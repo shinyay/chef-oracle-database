@@ -1,0 +1,7 @@
+name 'oracle-database'
+maintainer 'Shinya Yanagihara'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures oracle-database'
+long_description 'Installs/Configures oracle-database'
+version '0.1.0'
