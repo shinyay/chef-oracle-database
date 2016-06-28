@@ -10,15 +10,7 @@ puts "####{cookbook_name}::#{recipe_name} #{Time.now.inspect}: Starting compile 
 ##############################
 # Install Oracle Database
 execute "install oracle database" do
-  #user node['database']['user']
-  #group node['database']['group']
   command "su oracle -l -c '#{node['database']['runinstaller_path']} #{node['database']['ignore_sysprereq']} -waitforcompletion -silent -responseFile #{node['database']['response_file_install']}'"
-  #environment(
-  #  'USER' => node['database']['user'],
-  #  'HOME' => node['database']['user_home'],
-  #  'ORACLE_BASE' => node['database']['oracle_base'],
-  #  'ORACLE_HOME' => node['database']['oracle_home']
-  #) 
 end
 
 # log  "####{cookbook_name}::#{recipe_name} #{Time.now.inspect}: Finished execution phase"
