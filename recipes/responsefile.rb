@@ -33,5 +33,14 @@ template node['database']['response_file_dbca'] do
   mode '0644'
 end
 
+#############################
+# Crete Database Uninstall Response file
+template node['database']['response_file_uninstall'] do
+  source 'deinstall_oracledb.rsp.erb'
+  owner node['database']['owner']
+  group node['database']['group']
+  mode '0644'
+end
+
 # log  "####{cookbook_name}::#{recipe_name} #{Time.now.inspect}: Finished execution phase"
 puts "####{cookbook_name}::#{recipe_name} #{Time.now.inspect}: Finished compile phase"
