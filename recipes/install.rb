@@ -12,13 +12,19 @@ puts "####{cookbook_name}::#{recipe_name} #{Time.now.inspect}: Starting compile 
 execute "install oracle database" do
   #user node['database']['user']
   #group node['database']['group']
-  command "su oracle -l -c '#{node['database']['runinstaller_path']} #{node['database']['ignore_sysprereq']} -waitforcompletion -silent -responseFile #{node['database']['response_file_install']}'"
+  command "su #{node['database']['user']} -l -c '#{node['database']['runinstaller_path']} #{node['database']['ignore_sysprereq']} -waitforcompletion -silent -responseFile #{node['database']['response_file_install']}'"
+  returns [0, 6]
   #environment(
   #  'USER' => node['database']['user'],
   #  'HOME' => node['database']['user_home'],
   #  'ORACLE_BASE' => node['database']['oracle_base'],
   #  'ORACLE_HOME' => node['database']['oracle_home']
   #) 
+  not_if { Dir.exist?("#{node['database']['oracle_home']}/bin") }
+end
+
+execute "root.sh rdbms" do
+  command "#{node['database']['oracle_home']}/root.sh"
 end
 
 # log  "####{cookbook_name}::#{recipe_name} #{Time.now.inspect}: Finished execution phase"
