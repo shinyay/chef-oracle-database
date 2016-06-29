@@ -24,5 +24,14 @@ template node['database']['response_file_install'] do
   mode '0644'
 end
 
+#############################
+# Create DBCA Response file
+template node['database']['response_file_dbca'] do
+  source 'dbca_oracledb.rsp.erb'
+  owner node['database']['owner']
+  group node['database']['group']
+  mode '0644'
+end
+
 # log  "####{cookbook_name}::#{recipe_name} #{Time.now.inspect}: Finished execution phase"
 puts "####{cookbook_name}::#{recipe_name} #{Time.now.inspect}: Finished compile phase"
