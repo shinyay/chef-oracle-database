@@ -23,6 +23,10 @@ execute "install oracle database" do
   not_if { Dir.exist?("#{node['database']['oracle_home']}/bin") }
 end
 
+execute "orainstRoot.sh" do
+  command "#{node['database']['inventory_location']}/orainstRoot.sh"
+end
+
 execute "root.sh rdbms" do
   command "#{node['database']['oracle_home']}/root.sh"
 end
