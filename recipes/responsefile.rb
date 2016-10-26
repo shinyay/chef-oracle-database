@@ -34,6 +34,15 @@ template node['database']['response_file_dbca'] do
 end
 
 #############################
+# Create NETCA Response file
+template node['database']['response_file_netca'] do
+  source 'netca.rsp.erb'
+  owner node['database']['owner']
+  group node['database']['group']
+  mode '0644'
+end
+
+#############################
 # Crete Database Uninstall Response file
 template node['database']['response_file_uninstall'] do
   source 'deinstall_oracledb.rsp.erb'
